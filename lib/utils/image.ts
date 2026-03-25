@@ -66,10 +66,25 @@ export function generatePhotoFileName(originalName: string): string {
 }
 
 /**
- * 썸네일 파일명 생성
+ * 썸네일 파일명 생성 (항상 WebP)
  */
 export function getThumbnailFileName(originalFileName: string): string {
   const nameWithoutExtension = originalFileName.split('.').slice(0, -1).join('.')
-  const extension = originalFileName.split('.').pop()
-  return `${nameWithoutExtension}_thumb.${extension}`
+  return `${nameWithoutExtension}_thumb.webp`
+}
+
+/**
+ * 서버용 MIME 타입 검증
+ */
+export function isValidMimeType(mimeType: string): boolean {
+  const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+  return validTypes.includes(mimeType)
+}
+
+/**
+ * 서버용 파일 크기 검증 (기본: 10MB)
+ */
+export function isValidFileSize(bytes: number, maxSizeMB: number = 10): boolean {
+  const maxBytes = maxSizeMB * 1024 * 1024
+  return bytes <= maxBytes
 }

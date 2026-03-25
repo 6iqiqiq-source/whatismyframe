@@ -45,10 +45,11 @@ export type Database = {
           stock_quantity?: number | null
           category?: string | null
         }
+        Relationships: []
       }
     }
-    Views: Record<string, never>
-    Functions: Record<string, never>
-    Enums: Record<string, never>
+    Views: {}
+    Functions: {}
+    Enums: {}
   }
 }
